@@ -1,0 +1,16 @@
+{
+    "name": "PlayerViews",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0c207df46de668a4da11e668bc544fb3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
