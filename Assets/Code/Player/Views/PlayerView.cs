@@ -19,7 +19,7 @@ public class PlayerView : MonoBehaviour, IPlayerView
     public void Move(Vector3 velocity)
     {
         animator.SetTrigger(Running);
-        transform.rotation = Quaternion.LookRotation(velocity * -1);
+        transform.rotation = Quaternion.LookRotation(velocity);
         transform.position += velocity;
     }
 

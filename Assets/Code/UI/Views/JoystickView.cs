@@ -21,7 +21,7 @@ public class JoystickView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         Vector3 deltaPosition = currentPosition - initialClickPosition;
         deltaPosition.z = deltaPosition.y; 
         deltaPosition.y = 0;
-        deltaPosition = deltaPosition.normalized * -1;
+        deltaPosition = deltaPosition.normalized *-1;
         _moved.OnNext(deltaPosition*Time.deltaTime);
     }
 

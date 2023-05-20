@@ -475,6 +475,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3206923099687242365}
   - component: {fileID: 2486708082934903009}
+  - component: {fileID: 1448477133734201185}
+  - component: {fileID: 1709481495819020566}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -509,6 +511,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aceb7efa41a65740974181b48cd3e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1448477133734201185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206923099687242354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 849406ebe18d36941acc8a88f4aeccba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4278100186079492270}
+  weaponSlot: {fileID: 1993995369825730728}
+  prefab: {fileID: 11400000, guid: 6b3911700965ab544b014e0a791a3b5f, type: 2}
+--- !u!114 &1709481495819020566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3206923099687242354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97e281b115742a0b666a236b34d246a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 10
+  startPosition: {fileID: 0}
 --- !u!1 &3512741108777884559
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,6 +43,7 @@ public interface IWeapon
 {
     float SpeedModifier { get; }
     WeaponType Type { get; }
+    float AttackRange { get; }
 }
 
 public interface IPlayerView
