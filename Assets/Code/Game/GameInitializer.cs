@@ -17,10 +17,18 @@ public class GameInitializer : MonoBehaviour
     {
         var moved = new Subject<Vector3>();
         var inMemoryPlayer = new InMemoryPlayer(startSpeed);
-        var longSword = new LongSword();
+        
         var joystickPresenter = new JoystickPresenter(joystickView, moved);
-        var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, longSword);
-        var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, longSword);
+        var inMemoryWeapons = new InMemoryWeapons();
+        var longSword = new LongSword();
+        var greatSwordSword = new GreatSword();
+        var curvedSword = new CurvedSword();
+        inMemoryWeapons.Add(longSword);
+        inMemoryWeapons.Add(greatSwordSword);
+        inMemoryWeapons.Add(curvedSword);
+        var selectedWeapon = inMemoryWeapons.SelectRandom();
+        var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon);
+        var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon);
         
         joystickPresenter.Initialize();
         playerPresenter.Initialize();
@@ -28,6 +36,24 @@ public class GameInitializer : MonoBehaviour
 
         moved.Subscribe(playerPresenter.Move);
     }
+}
+
+
+public class InMemoryWeapons
+{
+    IDictionary<WeaponType, IWeapon> weapons;
+
+    public InMemoryWeapons()
+    {
+        weapons = new Dictionary<WeaponType, IWeapon>();
+    }
+    public void Add(IWeapon weapon)
+    {
+        weapons.Add(weapon.Type, weapon);
+    }
+
+    public IWeapon SelectRandom() => 
+        weapons[(WeaponType)Random.Range(0, weapons.Count)];
 }
 
 public class InMemoryPlayer: IPlayerRepository
@@ -42,7 +68,22 @@ public class InMemoryPlayer: IPlayerRepository
 
 public class LongSword : IWeapon
 {
-    public float SpeedModifier => 3;
+    public float SpeedModifier => 2;
     public WeaponType Type => WeaponType.LongSword;
     public float AttackRange => 2.5f;
 }
+
+public class CurvedSword : IWeapon
+{
+    public float SpeedModifier => 4;
+    public WeaponType Type => WeaponType.CurvedSword;
+    public float AttackRange => 2;
+}
+
+public class GreatSword : IWeapon
+{
+    public float SpeedModifier => 1;
+    public WeaponType Type => WeaponType.GreatSword;
+    public float AttackRange => 4;
+}
+

@@ -18,8 +18,6 @@ namespace Code.UI.Presenter
         {
             _view.Initialize(_moved);
         }
-        
-        
     }
 
     public interface IJoystickView
