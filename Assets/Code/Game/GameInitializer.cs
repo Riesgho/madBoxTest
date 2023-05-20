@@ -11,7 +11,7 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private JoystickView joystickView;
     [SerializeField] private PlayerView playerView;
     [SerializeField] private PlayerAttackInput playerAttackInput;
-    [SerializeField] private float startSpeed = 12;
+    [SerializeField] private float startSpeed = 5;
     // Start is called before the first frame update
     void Start()
     {

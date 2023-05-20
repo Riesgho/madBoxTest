@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour, IPlayerView
     [SerializeField] private WeaponPrefabs prefab;
     private static readonly int Running = Animator.StringToHash("running");
     private static readonly int Idling = Animator.StringToHash("idling");
+    private Vector3 _velocity;
 
     public void Initialize(WeaponType weaponType)
     {
@@ -19,14 +20,21 @@ public class PlayerView : MonoBehaviour, IPlayerView
     public void Move(Vector3 velocity)
     {
         animator.SetTrigger(Running);
-        transform.rotation = Quaternion.LookRotation(velocity);
-        transform.position += velocity;
+        _velocity = velocity;
+    }
+
+    private void FixedUpdate()
+    {
+        if(_velocity == Vector3.zero) return;
+        transform.rotation = Quaternion.LookRotation(_velocity);
+        transform.position += _velocity;
     }
 
     public void Stop()
     {
         animator.ResetTrigger(Running);
         animator.SetTrigger(Idling);
+        _velocity = Vector3.zero;
     }
 }
 
