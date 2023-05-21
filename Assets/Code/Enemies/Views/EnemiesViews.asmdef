@@ -1,14 +1,9 @@
 {
-    "name": "GameApp",
+    "name": "EnemiesViews",
     "rootNamespace": "",
     "references": [
-        "GUID:0c207df46de668a4da11e668bc544fb3",
-        "GUID:3729bba3c4c85a94189db36bf898ff18",
-        "GUID:18303c6c091923146870b7817aa1e19f",
-        "GUID:60c8f93fddd8d2347b32395ed1bbe469",
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:85820990169995b4fab6c18c6607cfd0",
-        "GUID:a649f352d7ecaec44a9985d6e2dc597a"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

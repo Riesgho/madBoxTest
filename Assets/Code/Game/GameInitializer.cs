@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Code.Enemies.Presenters;
+using Code.Enemies.Views;
 using Code.Player.Presenter;
 using Code.Player.Views;
 using Code.UI.Presenter;
@@ -12,6 +14,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private PlayerView playerView;
     [SerializeField] private PlayerAttackInput playerAttackInput;
     [SerializeField] private float startSpeed = 5;
+    [SerializeField] private EnemySpawner spawner;
+    [SerializeField] private EnemySpawnerConfig spawnerConfig;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +33,13 @@ public class GameInitializer : MonoBehaviour
         var selectedWeapon = inMemoryWeapons.SelectRandom();
         var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon);
         var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon);
+        var enemySpawnPresenter = new EnemySpawnPresenter(spawner, spawnerConfig);
         
         joystickPresenter.Initialize();
         playerPresenter.Initialize();
         playerAttackInputPresenter.Initialize();
+        enemySpawnPresenter.Initialize();
+        enemySpawnPresenter.SpawnAll();
 
         moved.Subscribe(playerPresenter.Move);
     }
