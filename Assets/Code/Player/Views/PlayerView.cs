@@ -11,6 +11,7 @@ public class PlayerView : MonoBehaviour, IPlayerView
     [SerializeField] private WeaponPrefabs prefab;
     private static readonly int Running = Animator.StringToHash("running");
     private static readonly int Idling = Animator.StringToHash("idling");
+    private static readonly int Attacking = Animator.StringToHash("attacking");
     private Vector3 _velocity;
 
     public void Initialize(WeaponType weaponType)
@@ -35,6 +36,16 @@ public class PlayerView : MonoBehaviour, IPlayerView
         animator.ResetTrigger(Running);
         animator.SetTrigger(Idling);
         _velocity = Vector3.zero;
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger(Attacking);
+    }
+
+    public void StopAttack()
+    {
+        animator.ResetTrigger(Attacking);
     }
 }
 

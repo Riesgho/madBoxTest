@@ -7,6 +7,7 @@ using Code.Player.Views;
 using Code.UI.Presenter;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameInitializer : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GameInitializer : MonoBehaviour
     void Start()
     {
         var moved = new Subject<Vector3>();
+        var attacked = new Subject<Unit>();
+        var stoppedAttack = new Subject<Unit>();
+        
         var inMemoryPlayer = new InMemoryPlayer(startSpeed);
         
         var joystickPresenter = new JoystickPresenter(joystickView, moved);
@@ -32,7 +36,7 @@ public class GameInitializer : MonoBehaviour
         inMemoryWeapons.Add(curvedSword);
         var selectedWeapon = inMemoryWeapons.SelectRandom();
         var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon);
-        var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon);
+        var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon, attacked,stoppedAttack);
         var enemySpawnPresenter = new EnemySpawnPresenter(spawner, spawnerConfig);
         
         joystickPresenter.Initialize();
@@ -42,6 +46,8 @@ public class GameInitializer : MonoBehaviour
         enemySpawnPresenter.SpawnAll();
 
         moved.Subscribe(playerPresenter.Move);
+        attacked.Subscribe(_ =>playerPresenter.Attack());
+        stoppedAttack.Subscribe(_ =>playerPresenter.StopAttack());
     }
 }
 

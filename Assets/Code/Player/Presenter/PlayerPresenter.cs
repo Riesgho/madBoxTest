@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 public class PlayerPresenter 
@@ -16,6 +18,11 @@ public class PlayerPresenter
         _weapon = weapon;
     }
 
+    public void Attack()
+    {
+        _view.Attack();
+    }
+
     public void Initialize()
     {
         _view.Initialize(_weapon.Type);
@@ -29,7 +36,12 @@ public class PlayerPresenter
         {
             _view.Stop();
         }
-    }   
+    }
+
+    public void StopAttack()
+    {
+        _view.StopAttack();
+    }
 }
 
 public enum WeaponType
@@ -51,5 +63,7 @@ public interface IPlayerView
     void Move(Vector3 velocity);
     void Initialize(WeaponType weaponType);
     void Stop();
+    void Attack();
+    void StopAttack();
 }
 

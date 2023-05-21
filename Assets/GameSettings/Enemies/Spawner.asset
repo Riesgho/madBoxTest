@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb05e92e82b840d9872e4120826cc0a2, type: 3}
   m_Name: Spawner
   m_EditorClassIdentifier: 
-  amount: 0
-  area: {x: 0, y: 0}
+  amount: 10
+  area: {x: 500, y: 500}
