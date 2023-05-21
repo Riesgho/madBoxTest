@@ -23,6 +23,7 @@ public class GameInitializer : MonoBehaviour
         var moved = new Subject<Vector3>();
         var attacked = new Subject<Unit>();
         var stoppedAttack = new Subject<Unit>();
+        var applyDamage = new Subject<Unit>();
         
         var inMemoryPlayer = new InMemoryPlayer(startSpeed);
         
@@ -35,7 +36,7 @@ public class GameInitializer : MonoBehaviour
         inMemoryWeapons.Add(greatSwordSword);
         inMemoryWeapons.Add(curvedSword);
         var selectedWeapon = inMemoryWeapons.SelectRandom();
-        var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon);
+        var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon, applyDamage);
         var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon, attacked,stoppedAttack);
         var enemySpawnPresenter = new EnemySpawnPresenter(spawner, spawnerConfig);
         
@@ -48,6 +49,7 @@ public class GameInitializer : MonoBehaviour
         moved.Subscribe(playerPresenter.Move);
         attacked.Subscribe(_ =>playerPresenter.Attack());
         stoppedAttack.Subscribe(_ =>playerPresenter.StopAttack());
+        applyDamage.Subscribe(_ => Debug.Log("AppliedDamage"));
     }
 }
 

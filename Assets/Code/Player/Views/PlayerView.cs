@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UniRx;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Object = UnityEngine.Object;
@@ -38,9 +39,10 @@ public class PlayerView : MonoBehaviour, IPlayerView
         _velocity = Vector3.zero;
     }
 
-    public void Attack()
+    public IObservable<Unit> Attack()
     {
         animator.SetTrigger(Attacking);
+        return animator.WaitUntilCurrentAnimationEndsAsObservable();
     }
 
     public void StopAttack()
