@@ -8,6 +8,7 @@ using Object = UnityEngine.Object;
 public class PlayerView : MonoBehaviour, IPlayerView
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip attackAnimationClip;
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private WeaponPrefabs prefab;
     private static readonly int Running = Animator.StringToHash("running");
@@ -39,14 +40,21 @@ public class PlayerView : MonoBehaviour, IPlayerView
         _velocity = Vector3.zero;
     }
 
-    public IObservable<Unit> Attack()
+    public IObservable<Unit> Attack(float speed)
     {
         animator.SetTrigger(Attacking);
-        return animator.WaitUntilCurrentAnimationEndsAsObservable();
+        animator.speed = speed;
+        return Observable.Timer(TimeSpan.FromSeconds(attackAnimationClip.length))
+            .Select(_ => Unit.Default).Take(1);
     }
+    
+    public IObservable<Unit> ApplyDamage(float speed) =>
+        Observable.Timer(TimeSpan.FromSeconds(attackAnimationClip.length*speed))
+            .Select(_ => Unit.Default).Take(1);
 
     public void StopAttack()
     {
+        animator.speed = 1;
         animator.ResetTrigger(Attacking);
     }
 }

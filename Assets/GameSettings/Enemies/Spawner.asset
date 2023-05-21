@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Spawner
   m_EditorClassIdentifier: 
   amount: 10
-  area: {x: 500, y: 500}
+  area: {x: 100, y: 100}

@@ -27,14 +27,26 @@ public class PlayerPresenter
     public void Attack()
     {
         if (_canAttackAgain)
-            _view.Attack()
-                .DoOnCompleted(() =>
-                {
-                    _canAttackAgain = true;
-                    _applyDamage.OnNext(Unit.Default);
-                }).DoOnSubscribe(()=>_canAttackAgain = false)
+        {
+            ShowAttackAnimation();
+            _view.ApplyDamage(_weapon.ApplyDamageSpeed)
+                .DoOnCompleted(()=> _applyDamage.OnNext(Unit.Default))
                 .Subscribe()
                 .AddTo(_disposable);
+        }
+           
+    }
+
+    private void ShowAttackAnimation()
+    {
+        _view.Attack(_weapon.AttackSpeedModifier)
+            .DoOnCompleted(() =>
+            {
+                _canAttackAgain = true;
+            })
+            .DoOnSubscribe(() => _canAttackAgain = false)
+            .Subscribe()
+            .AddTo(_disposable);
     }
 
     public void Initialize()
@@ -55,6 +67,7 @@ public class PlayerPresenter
     public void StopAttack()
     {
         _view.StopAttack();
+        _canAttackAgain = true;
     }
 }
 
@@ -70,6 +83,8 @@ public interface IWeapon
     float SpeedModifier { get; }
     WeaponType Type { get; }
     float AttackRange { get; }
+    float AttackSpeedModifier { get; }
+    float ApplyDamageSpeed { get; }
 }
 
 public interface IPlayerView
@@ -77,6 +92,7 @@ public interface IPlayerView
     void Move(Vector3 velocity);
     void Initialize(WeaponType weaponType);
     void Stop();
-    IObservable<Unit> Attack();
+    IObservable<Unit> Attack(float speed);
     void StopAttack();
+    IObservable<Unit> ApplyDamage(float speed);
 }
