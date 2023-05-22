@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Code.Enemies.Presenters;
 using Code.Enemies.Views;
 using Code.Player.Presenter;
@@ -17,6 +16,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private float startSpeed = 5;
     [SerializeField] private EnemySpawner spawner;
     [SerializeField] private EnemySpawnerConfig spawnerConfig;
+
+    [SerializeField] private WeaponPrefabs weaponPrefabs;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +29,7 @@ public class GameInitializer : MonoBehaviour
         var inMemoryPlayer = new InMemoryPlayer(startSpeed);
         
         var joystickPresenter = new JoystickPresenter(joystickView, moved);
-        var inMemoryWeapons = new InMemoryWeapons();
-        var longSword = new LongSword();
-        var greatSwordSword = new GreatSword();
-        var curvedSword = new CurvedSword();
-        inMemoryWeapons.Add(longSword);
-        inMemoryWeapons.Add(greatSwordSword);
-        inMemoryWeapons.Add(curvedSword);
+        var inMemoryWeapons = new InMemoryWeapons(weaponPrefabs);
         var selectedWeapon = inMemoryWeapons.SelectRandom();
         var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon, applyDamage);
         var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon, attacked,stoppedAttack);
@@ -51,32 +46,4 @@ public class GameInitializer : MonoBehaviour
         stoppedAttack.Subscribe(_ =>playerPresenter.StopAttack());
         applyDamage.Subscribe(_ => Debug.Log("AppliedDamage"));
     }
-}
-
-
-public class InMemoryWeapons
-{
-    IDictionary<WeaponType, IWeapon> weapons;
-
-    public InMemoryWeapons()
-    {
-        weapons = new Dictionary<WeaponType, IWeapon>();
-    }
-    public void Add(IWeapon weapon)
-    {
-        weapons.Add(weapon.Type, weapon);
-    }
-
-    public IWeapon SelectRandom() => 
-        weapons[(WeaponType)Random.Range(0, weapons.Count)];
-}
-
-public class InMemoryPlayer: IPlayerRepository
-{
-    public InMemoryPlayer(float startSpeed)
-    {
-        Speed = startSpeed;
-    }
-
-    public float Speed { get; }
 }

@@ -3,7 +3,7 @@
 namespace Code.Player.Views
 {
     [CreateAssetMenu(menuName = "Player/Weapons/WeaponInfo")]
-    public class WeaponInfo: ScriptableObject
+    public class WeaponInfo: ScriptableObject, IWeapon
     {
         [SerializeField] private float speedModifier;
         [SerializeField] private WeaponType type;

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d5d1c98a48403e95496c2b375ffbb1, type: 3}
   m_Name: Weapon Config
   m_EditorClassIdentifier: 
-  _weaponConfig:
+  weaponConfig:
   - Prefab: {fileID: 15448191510330147, guid: bac79aa2a0057e5429a664d3f336da3d, type: 3}
     WeaponType: 0
-  - Prefab: {fileID: 478356759475107179, guid: 17cf6e9fc28f3a544bc062d510f66f4a, type: 3}
-    WeaponType: 2
+    WeaponInfo: {fileID: 11400000, guid: ede3d51e83a7d58448750c99ad12af8e, type: 2}
   - Prefab: {fileID: 6937623146161485751, guid: 4d0814cafad460246890ec829fa7071d, type: 3}
     WeaponType: 1
+    WeaponInfo: {fileID: 11400000, guid: c38ea1fc227679f4a957cf8e9a877be9, type: 2}
+  - Prefab: {fileID: 478356759475107179, guid: 17cf6e9fc28f3a544bc062d510f66f4a, type: 3}
+    WeaponType: 2
+    WeaponInfo: {fileID: 11400000, guid: 6450c4f3023dbc1409b199b8ad20940d, type: 2}
