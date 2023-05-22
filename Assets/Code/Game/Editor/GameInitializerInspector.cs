@@ -37,12 +37,18 @@
                 SerializedProperty weaponProbs = configObject.FindProperty("weaponProbs");
 
                 EditorGUILayout.PropertyField(amountOfMobs);
-
                 EditorGUILayout.PropertyField(weaponProbs, true);
-
-                EditorGUI.indentLevel--;
-
+                
                 configObject.ApplyModifiedProperties();
+              
+                
+                EditorGUILayout.Space();
+                if (GUILayout.Button("Re-Roll Weapons"))
+                {
+                    GameInitializer gameInitializer = (GameInitializer)target;
+                    gameInitializer.ReRollWeapon();
+                }
+
             }
         }
     }

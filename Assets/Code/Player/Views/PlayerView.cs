@@ -15,10 +15,11 @@ public class PlayerView : MonoBehaviour, IPlayerView
     private static readonly int Idling = Animator.StringToHash("idling");
     private static readonly int Attacking = Animator.StringToHash("attacking");
     private Vector3 _velocity;
+    private GameObject _weapon;
 
     public void Initialize(WeaponType weaponType)
     {
-        Instantiate(prefab.GetPrefabFor(weaponType), weaponSlot);
+       _weapon = Instantiate(prefab.GetPrefabFor(weaponType), weaponSlot);
     }
     public void Move(Vector3 velocity)
     {
@@ -51,6 +52,12 @@ public class PlayerView : MonoBehaviour, IPlayerView
     public IObservable<Unit> ApplyDamage(float speed) =>
         Observable.Timer(TimeSpan.FromSeconds(attackAnimationClip.length*speed))
             .Select(_ => Unit.Default).Take(1);
+
+    public void ChangeWeapon(WeaponType weaponType)
+    {
+        Destroy(_weapon);
+        _weapon = Instantiate(prefab.GetPrefabFor(weaponType), weaponSlot);
+    }
 
     public void StopAttack()
     {

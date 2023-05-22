@@ -17,6 +17,10 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private EnemySpawnerConfig spawnerConfig;
     [SerializeField] private WeaponPrefabs weaponPrefabs;
     [SerializeField] private GameConfiguration gameConfiguration;
+
+    private PlayerPresenter _playerPresenter;
+    private InMemoryWeapons _inMemoryWeapons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,21 +32,26 @@ public class GameInitializer : MonoBehaviour
         var inMemoryPlayer = new InMemoryPlayer(startSpeed);
         
         var joystickPresenter = new JoystickPresenter(joystickView, moved);
-        var inMemoryWeapons = new InMemoryWeapons(weaponPrefabs, gameConfiguration);
-        var selectedWeapon = inMemoryWeapons.SelectRandom();
-        var playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon, applyDamage);
+        _inMemoryWeapons = new InMemoryWeapons(weaponPrefabs, gameConfiguration);
+        var selectedWeapon = _inMemoryWeapons.SelectRandom();
+        _playerPresenter = new PlayerPresenter(playerView, inMemoryPlayer, selectedWeapon, applyDamage);
         var playerAttackInputPresenter = new PlayerAttackInputPresenter(playerAttackInput, selectedWeapon, attacked,stoppedAttack);
         var enemySpawnPresenter = new EnemySpawnPresenter(spawner, spawnerConfig, gameConfiguration);
         
         joystickPresenter.Initialize();
-        playerPresenter.Initialize();
+        _playerPresenter.Initialize();
         playerAttackInputPresenter.Initialize();
         enemySpawnPresenter.Initialize();
         enemySpawnPresenter.SpawnAll();
 
-        moved.Subscribe(playerPresenter.Move);
-        attacked.Subscribe(_ =>playerPresenter.Attack());
-        stoppedAttack.Subscribe(_ =>playerPresenter.StopAttack());
+        moved.Subscribe(_playerPresenter.Move);
+        attacked.Subscribe(_ =>_playerPresenter.Attack());
+        stoppedAttack.Subscribe(_ =>_playerPresenter.StopAttack());
         applyDamage.Subscribe(_ => Debug.Log("AppliedDamage"));
+    }
+
+    public void ReRollWeapon()
+    {
+        _playerPresenter.ChangeWeapon(_inMemoryWeapons.SelectRandom());
     }
 }

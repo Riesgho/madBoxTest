@@ -23,7 +23,18 @@ public class InMemoryWeapons
 
     private WeaponType SelectType()
     {
-        var rndValue = Random.Range(0.0f, 1.0f);
-        return _gameConfiguration.GetWeaponProbs().First(weapon => weapon.StartProb > rndValue).Type;
+        var weaponProbs = _gameConfiguration.GetWeaponProbs().ToList();
+        
+        var totalProbability = weaponProbs.Sum(wp => wp.StartProb);
+        
+        var randomValue = Random.Range(0f, totalProbability);
+        var cumulativeProbability = 0f;
+        foreach (var weaponProb in weaponProbs)
+        {
+            cumulativeProbability += weaponProb.StartProb;
+            if (randomValue < cumulativeProbability)
+                return weaponProb.Type;
+        }
+        return WeaponType.LongSword;
     }
 }

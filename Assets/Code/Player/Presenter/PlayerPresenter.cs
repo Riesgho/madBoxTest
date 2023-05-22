@@ -9,7 +9,7 @@ public class PlayerPresenter
 {
     private readonly IPlayerView _view;
     private readonly IPlayerRepository _inMemoryPlayer;
-    private readonly IWeapon _weapon;
+    private IWeapon _weapon;
     private readonly ISubject<Unit> _applyDamage;
     private readonly CompositeDisposable _disposable;
     private bool _canAttackAgain = true;
@@ -69,6 +69,13 @@ public class PlayerPresenter
         _view.StopAttack();
         _canAttackAgain = true;
     }
+
+    public void ChangeWeapon(IWeapon weapon)
+    {
+        _weapon = weapon;
+        Debug.Log(_weapon.Type);
+        _view.ChangeWeapon(_weapon.Type);
+    }
 }
 
 public interface IPlayerView
@@ -79,4 +86,5 @@ public interface IPlayerView
     IObservable<Unit> Attack(float speed);
     void StopAttack();
     IObservable<Unit> ApplyDamage(float speed);
+    void ChangeWeapon(WeaponType weaponType);
 }

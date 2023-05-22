@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amountOfMobs: 5
   weaponProbs:
-  - startProb: 1
+  - startProb: 0.6
     type: 0
-  - startProb: 0.5
+  - startProb: 0.3
     type: 1
-  - startProb: 0.2
+  - startProb: 0.1
     type: 2
