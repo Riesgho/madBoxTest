@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Code.Game;
+using UnityEngine;
 
 namespace Code.Enemies.Presenters
 {
@@ -7,7 +8,7 @@ namespace Code.Enemies.Presenters
         private readonly IEnemySpawnView _view;
         private readonly IEnemySpawnConfig _config;
 
-        public EnemySpawnPresenter(IEnemySpawnView view, IEnemySpawnConfig config)
+        public EnemySpawnPresenter(IEnemySpawnView view, IEnemySpawnConfig config, IGameConfiguration gameConfiguration)
         {
             _view = view;
             _config = config;

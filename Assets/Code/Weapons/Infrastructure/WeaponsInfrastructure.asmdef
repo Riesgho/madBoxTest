@@ -1,11 +1,9 @@
 {
-    "name": "PlayerPresentation",
+    "name": "WeaponsInfrastructure",
     "rootNamespace": "",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
         "GUID:c1a93654e8a518441831810b93074e08",
-        "GUID:fef66b57c0fa81540ad59f45b819a8cb",
-        "GUID:917e8b25d04e4fc4b856bdec41ccc4da"
+        "GUID:62c09771c2e31254293dd1bea6e3d4b6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

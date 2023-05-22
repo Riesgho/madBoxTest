@@ -6,11 +6,11 @@ using UnityEngine;
 [CustomEditor(typeof(WeaponView))]
 public class WeaponStatsInspector : Editor
 {
-    private SerializedProperty scriptableObjectProperty;
+    private SerializedProperty weaponConfig;
 
     private void OnEnable()
     {
-        scriptableObjectProperty = serializedObject.FindProperty("weaponInfo");
+        weaponConfig = serializedObject.FindProperty("weaponInfo");
     }
 
      public override void OnInspectorGUI()
@@ -27,19 +27,19 @@ public class WeaponStatsInspector : Editor
     {
         EditorGUILayout.LabelField("Weapon Stats", EditorStyles.boldLabel);
 
-        if (scriptableObjectProperty.objectReferenceValue != null)
+        if (weaponConfig.objectReferenceValue != null)
         {
-            SerializedObject scriptableObject = new SerializedObject(scriptableObjectProperty.objectReferenceValue);
-            SerializedProperty scriptableObjectField = scriptableObject.GetIterator();
+            SerializedObject weaponInfo = new SerializedObject(weaponConfig.objectReferenceValue);
+            SerializedProperty fields = weaponInfo.GetIterator();
             bool enterChildren = true;
 
-            while (scriptableObjectField.NextVisible(enterChildren))
+            while (fields.NextVisible(enterChildren))
             {
-                EditorGUILayout.PropertyField(scriptableObjectField, true);
+                EditorGUILayout.PropertyField(fields, true);
                 enterChildren = false;
             }
 
-            scriptableObject.ApplyModifiedProperties();
+            weaponInfo.ApplyModifiedProperties();
         }
         else
         {

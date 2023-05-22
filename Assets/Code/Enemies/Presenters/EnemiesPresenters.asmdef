@@ -1,3 +1,16 @@
 {
-	"name": "EnemiesPresenters"
+    "name": "EnemiesPresenters",
+    "rootNamespace": "",
+    "references": [
+        "GUID:62c09771c2e31254293dd1bea6e3d4b6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

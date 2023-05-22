@@ -1,10 +1,7 @@
 {
-    "name": "PlayerPresentation",
+    "name": "PlayerInfrastructure",
     "rootNamespace": "",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
-        "GUID:c1a93654e8a518441831810b93074e08",
-        "GUID:fef66b57c0fa81540ad59f45b819a8cb",
         "GUID:917e8b25d04e4fc4b856bdec41ccc4da"
     ],
     "includePlatforms": [],

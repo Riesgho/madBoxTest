@@ -71,22 +71,6 @@ public class PlayerPresenter
     }
 }
 
-public enum WeaponType
-{
-    LongSword,
-    CurvedSword,
-    GreatSword
-}
-
-public interface IWeapon
-{
-    float SpeedModifier { get; }
-    WeaponType Type { get; }
-    float AttackRange { get; }
-    float AttackSpeedModifier { get; }
-    float ApplyDamageSpeed { get; }
-}
-
 public interface IPlayerView
 {
     void Move(Vector3 velocity);
