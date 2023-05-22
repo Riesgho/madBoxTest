@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Code.Player.Views;
 using UniRx;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -65,4 +66,5 @@ public class WeaponPrefab
 {
     public GameObject Prefab;
     public WeaponType WeaponType;
+    public WeaponInfo WeaponInfo;
 }

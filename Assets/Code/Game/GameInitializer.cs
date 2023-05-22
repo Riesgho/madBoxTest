@@ -80,31 +80,3 @@ public class InMemoryPlayer: IPlayerRepository
 
     public float Speed { get; }
 }
-
-public class LongSword : IWeapon
-{
-    public float SpeedModifier => 2;
-    public WeaponType Type => WeaponType.LongSword;
-    public float AttackRange => 2.5f;
-    public float AttackSpeedModifier => 1;
-    public float ApplyDamageSpeed => 0.5f;
-}
-
-public class CurvedSword : IWeapon
-{
-    public float SpeedModifier => 4;
-    public WeaponType Type => WeaponType.CurvedSword;
-    public float AttackRange => 2;
-    public float AttackSpeedModifier => 1.5f;
-    public float ApplyDamageSpeed => 0.25f;
-}
-
-public class GreatSword : IWeapon
-{
-    public float SpeedModifier => 1;
-    public WeaponType Type => WeaponType.GreatSword;
-    public float AttackRange => 4;
-    public float AttackSpeedModifier => 0.5f;
-    public float ApplyDamageSpeed => 0.75f;
-}
-
