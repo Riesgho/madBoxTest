@@ -19,7 +19,7 @@ public class InMemoryWeapons
     }
     
     public IWeapon SelectRandom() => 
-        weapons[(WeaponType)Random.Range(0, weapons.Count)];
+        weapons[SelectType()];
 
     private WeaponType SelectType()
     {

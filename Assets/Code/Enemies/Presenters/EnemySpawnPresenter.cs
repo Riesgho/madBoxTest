@@ -6,12 +6,14 @@ namespace Code.Enemies.Presenters
     public class EnemySpawnPresenter
     {
         private readonly IEnemySpawnView _view;
-        private readonly IEnemySpawnConfig _config;
+        private readonly IEnemySpawnConfig _enemySpawnConfig;
+        private readonly IGameConfiguration _gameConfiguration;
 
-        public EnemySpawnPresenter(IEnemySpawnView view, IEnemySpawnConfig config, IGameConfiguration gameConfiguration)
+        public EnemySpawnPresenter(IEnemySpawnView view, IEnemySpawnConfig enemySpawnConfig, IGameConfiguration gameConfiguration)
         {
             _view = view;
-            _config = config;
+            _enemySpawnConfig = enemySpawnConfig;
+            _gameConfiguration = gameConfiguration;
         }
 
         public void Initialize()
@@ -21,13 +23,12 @@ namespace Code.Enemies.Presenters
 
         public void SpawnAll()
         {
-            _view.SpawnAll(_config.Amount, _config.Area);
+            _view.SpawnAll(_gameConfiguration.AmountOfMobs, _enemySpawnConfig.Area);
         }
     }
 
     public interface IEnemySpawnConfig
     {
-        int Amount { get; }
         Vector2 Area { get; }
     }
 

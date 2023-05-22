@@ -11,6 +11,8 @@ namespace Code.Game
         [SerializeField] private List<WeaponProb> weaponProbs;
         public IEnumerable<IWeaponProb> GetWeaponProbs() => 
             weaponProbs;
+
+        public int AmountOfMobs => amountOfMobs;
     }
 
     [System.Serializable]

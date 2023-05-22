@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbd67e4f62847fdb4a36d1b3f2ebc5e, type: 3}
   m_Name: Configuration
   m_EditorClassIdentifier: 
-  amountOfMobs: 10
+  amountOfMobs: 5
   weaponProbs:
-  - startProb: 0.5
+  - startProb: 1
     type: 0
-  - startProb: 0.3
+  - startProb: 0.5
     type: 1
   - startProb: 0.2
     type: 2
