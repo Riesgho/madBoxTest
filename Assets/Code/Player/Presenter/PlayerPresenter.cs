@@ -73,7 +73,6 @@ public class PlayerPresenter
     public void ChangeWeapon(IWeapon weapon)
     {
         _weapon = weapon;
-        Debug.Log(_weapon.Type);
         _view.ChangeWeapon(_weapon.Type);
     }
 }

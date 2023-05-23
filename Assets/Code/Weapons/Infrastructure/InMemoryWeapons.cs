@@ -3,7 +3,7 @@ using System.Linq;
 using Code.Game;
 using UnityEngine;
 
-public class InMemoryWeapons
+public class InMemoryWeapons: IWeaponRepository
 {
     private readonly IGameConfiguration _gameConfiguration;
     IDictionary<WeaponType, IWeapon> weapons;
@@ -37,4 +37,15 @@ public class InMemoryWeapons
         }
         return WeaponType.LongSword;
     }
+
+    public IDictionary<WeaponType, IWeapon> GetAll() => 
+        weapons;
+
+    public void Update(IWeapon weapon)
+    {
+        weapons[weapon.Type] = weapon;
+    }
+
+    public IWeapon Get(WeaponType weaponType) => 
+        weapons[weaponType];
 }
