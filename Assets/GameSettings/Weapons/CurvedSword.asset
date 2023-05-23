@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e7d47298e84d6a9db5857e26b4ee1a, type: 3}
   m_Name: CurvedSword
   m_EditorClassIdentifier: 
-  speedModifier: 12
+  speedModifier: 4
   type: 1
   attackRange: 2
   attackSpeedModifier: 1.5

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12e7d47298e84d6a9db5857e26b4ee1a, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
-  speedModifier: 6
+  speedModifier: 2
   type: 0
   attackRange: 2.5
   attackSpeedModifier: 1

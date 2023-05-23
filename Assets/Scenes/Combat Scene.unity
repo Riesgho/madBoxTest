@@ -1441,7 +1441,7 @@ MonoBehaviour:
   joystickView: {fileID: 935984551}
   playerView: {fileID: 1534237529}
   playerAttackInput: {fileID: 1534237530}
-  startSpeed: 12
+  startSpeed: 1
   spawner: {fileID: 516014374}
   spawnerConfig: {fileID: 11400000, guid: d3804f62c37d9b340b354a9ea6525bdb, type: 2}
   weaponPrefabs: {fileID: 11400000, guid: 6b3911700965ab544b014e0a791a3b5f, type: 2}

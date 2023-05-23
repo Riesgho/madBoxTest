@@ -22,7 +22,7 @@ public class JoystickView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         deltaPosition.z = deltaPosition.y; 
         deltaPosition.y = 0;
         deltaPosition = deltaPosition.normalized *-1;
-        _moved.OnNext(deltaPosition*Time.deltaTime);
+        _moved.OnNext(deltaPosition*Time.fixedDeltaTime);
     }
 
     public void OnEndDrag(PointerEventData eventData)
